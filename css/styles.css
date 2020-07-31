@@ -65,9 +65,7 @@ section {
 
 /* Navigation Styles*/
 .navbar__menu ul {
-    display: flex;
-    flex-direction: row;
-    padding-left: auto;
+    padding-left: 0;
     margin: 0;
     text-align: right;
 }
@@ -76,29 +74,18 @@ section {
     display: inline-block;
 }
 
-.navbar__menu li a {
-  padding: auto;
-}
-
 .navbar__menu .menu__link {
     display: block;
     padding: 1em;
     font-weight: bold;
     text-decoration: none;
     color: #000;
-    cursor: pointer;
 }
 
 .navbar__menu .menu__link:hover {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
-}
-
-.link__active {
-  background: #333;
-  color: #fff;
-  transition: ease 0.3s all;
 }
 
 /* Header Styles */
@@ -207,8 +194,8 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* Section Active Styles */
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 section.your-active-class {
-    background: rgb(100, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(200, 0, 100, 1) 100%);
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 section.your-active-class .landing__container::before {
@@ -233,23 +220,4 @@ section.your-active-class .landing__container::after {
 		           translate(-1em) 
 		           rotate(-360deg);
 	}
-}
-
-/* Change navbar for device wdith */
-
-@media(max-width: 670px) {
-  .navbar__menu ul{
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    grid-template-rows: repeat(2, 2fr);
-    justify-content: center;
-    width: 50%;
-  }
-}
-
-@media(max-width: 560px) {
-  .main__hero {
-    position: relative;
-    margin-top: 200px;
-  }
 }

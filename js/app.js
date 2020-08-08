@@ -22,18 +22,18 @@
  */
 
 // const navlist = document.getElementsByClassName("navbar__menu").getElementById("navbar__list")
-const navTrial = document.querySelector("ul");
-const navClass = document.getElementsByClassName("header>nav>ul#navbar__list");
-const dynamic = document.querySelectorAll(".navbar__menu");
-const scroll = document.getElementById("section1");
-const scroll2 = document.getElementById("section2");
-const scroll3 = document.getElementById("section3");
+// const navTrial = document.querySelector("ul");
+// const navClass = document.getElementsByClassName("header>nav>ul#navbar__list");
+// const dynamic = document.querySelectorAll(".navbar__menu");
+// const scroll = document.getElementById("section1");
+// const scroll2 = document.getElementById("section2");
+// const scroll3 = document.getElementById("section3");
 
-const scrollPlease = document.querySelectorAll("h2");
+// const scrollPlease = document.querySelectorAll("h2");
 
-const load = document.querySelector("div");
+// const load = document.querySelector("div");
 
-const trialData = document.getElementsByClassName("landing__container");
+// const trialData = document.getElementsByClassName("landing__container");
 
 // const dataArray = Array.from(document.querySelectorAll("[data-nav]"));
 // function dabby() {
@@ -58,24 +58,29 @@ const trialData = document.getElementsByClassName("landing__container");
  */
 
 //
+const nav_ul = document.getElementById("navbar__list");
+const trialData = document.getElementsByClassName("landing__container");
+const activeClassName = "your-active-class";
+let activeSection = document.getElementById("section1");
+
 for (let i = 1; i <= trialData.length; i++) {
-    const nav_ul = document.getElementById("navbar__list");
     const entry = document.createElement("li");
     entry.classList.add("menu__link");
     entry.innerText = `Section ${i}`;
     nav_ul.appendChild(entry);
     entry.addEventListener("click", function () {
-        const section = document.querySelector(`#section${i}`);
+        const section = document.getElementById(`section${i}`);
         section.scrollIntoView({ behavior: "smooth" });
+
+        activeSection.classList.remove(activeClassName);
+        section.classList.add(activeClassName);
+        activeSection = section;
     });
 }
 
 // build the nav
 
-// function bob() {
 
-// };
-// bob();
 
 // for (let i = 1; i <= trialData.length; i++) {
 //     const nav_ul = document.getElementById("navbar__list");

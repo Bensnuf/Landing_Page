@@ -38,7 +38,7 @@ for (let i = 1; i <= trialData.length; i++) {
     entry.setAttribute("id", `nav${i}`);
     let navId = document.getElementById(`nav${i}`);
 
-//adding activeClassName to navigation "Section1" ONLY, so it starts highlighted
+//adding activeClassName to navigation "Section1" ONLY, so it's only on one nav section to begin
     if (i === 1) {
         entry.classList.add(activeClassName);
     }
@@ -54,27 +54,53 @@ for (let i = 1; i <= trialData.length; i++) {
 
 /*
 * the let navActive can only be set AFTER the navigation bar has been made, putting this 
-* before it's creation makes it "null" or "undefined" everytime. It also cannot go inside
-* the function below it as this will reset it to "nav1" everytime there is a click.  
+* before it's creation makes it "null" or "undefined" everytime. It also cannot go inside either
+* functions below it as this will reset it to "nav1" everytime there is a click.  
 * Must also be let instead of const as this stops it from being changed 
 * when clicked "navActive = navId"   
 */   
 let navActive = document.getElementById("nav1");
 
+
 /*
-* now the activeClassName can be changed for both the navigation and section when clicked
-* MAY ALSO WORK FOR SCROLL (SCROLL MAY MAKE THIS IRRELEVANT BUT AT LEAST I LEARNED IT)
+* the activeClassName can be changed for both the navigation and section when clicked
+* this appears to be unneccesary due to the scrolling EventListener
 */
-for (let i = 1; i <= trialData.length; i++) {
-const navId = document.getElementById(`nav${i}`);
-    navId.addEventListener("click", function () {
-        navActive.classList.remove(activeClassName);
-        navId.classList.add(activeClassName);
-        navActive = navId;        
+// for (let i = 1; i <= trialData.length; i++) {
+// const navId = document.getElementById(`nav${i}`);
+//     navId.addEventListener("click", function () {
+//         navActive.classList.remove(activeClassName);
+//         navId.classList.add(activeClassName);
+//         navActive = navId;        
         
-        const section = document.getElementById(`section${i}`);
-        activeSection.classList.remove(activeClassName);
-        section.classList.add(activeClassName);
-        activeSection = section;
-    });
-};
+//         const section = document.getElementById(`section${i}`);
+//         activeSection.classList.remove(activeClassName);
+//         section.classList.add(activeClassName);
+//         activeSection = section;
+//     });
+// };
+
+/*
+* now the activeClassName can be changed while scrolling through the page making the click
+* function above redundant 
+*/
+window.addEventListener("scroll", function () {
+    for (let i = 1; i <= trialData.length; i++) {
+        let sections = document.getElementById(`section${i}`);
+        const navId = document.getElementById(`nav${i}`);
+        // let activeScroll = sections.getBoundingClientRect();
+        
+        if (sections.getBoundingClientRect().top < window.innerHeight 
+        && sections.getBoundingClientRect().bottom <=  window.innerHeight
+        && sections.getBoundingClientRect().top >= -525) 
+        {
+
+        navId.classList.add(activeClassName);
+        sections.classList.add(activeClassName);
+
+         } else{
+        navId.classList.remove(activeClassName);
+        sections.classList.remove(activeClassName);
+    }
+    }
+});

@@ -64,25 +64,27 @@ let navActive = document.getElementById("nav1");
 
 /*
 * the activeClassName can be changed for both the navigation and section when clicked
-* this appears to be unneccesary due to the scrolling EventListener
 */
-// for (let i = 1; i <= trialData.length; i++) {
-// const navId = document.getElementById(`nav${i}`);
-//     navId.addEventListener("click", function () {
-//         navActive.classList.remove(activeClassName);
-//         navId.classList.add(activeClassName);
-//         navActive = navId;        
+for (let i = 1; i <= trialData.length; i++) {
+const navId = document.getElementById(`nav${i}`);
+let sections = document.getElementById(`section${i}`);
+    navId.addEventListener("click", function (e) {
+        e.preventDefault(); 
+        sections.scrollIntoView();
         
-//         const section = document.getElementById(`section${i}`);
-//         activeSection.classList.remove(activeClassName);
-//         section.classList.add(activeClassName);
-//         activeSection = section;
-//     });
-// };
+        navActive.classList.remove(activeClassName);
+        navId.classList.add(activeClassName);
+        navActive = navId;        
+        
+        const section = document.getElementById(`section${i}`);
+        activeSection.classList.remove(activeClassName);
+        section.classList.add(activeClassName);
+        activeSection = section;
+    });
+};
 
 /*
-* now the activeClassName can be changed while scrolling through the page making the click
-* function above redundant 
+* now the activeClassName can be changed while scrolling through the page as well
 */
 window.addEventListener("scroll", function () {
     for (let i = 1; i <= trialData.length; i++) {
@@ -91,10 +93,9 @@ window.addEventListener("scroll", function () {
         // let activeScroll = sections.getBoundingClientRect();
         
         if (sections.getBoundingClientRect().top < window.innerHeight 
-        && sections.getBoundingClientRect().bottom <=  window.innerHeight
-        && sections.getBoundingClientRect().top >= -525) 
+        && sections.getBoundingClientRect().bottom >=  50
+        && sections.getBoundingClientRect().top <= 50) 
         {
-
         navId.classList.add(activeClassName);
         sections.classList.add(activeClassName);
 
